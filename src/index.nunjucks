@@ -1,7 +1,5 @@
 {% extends '_layouts/base.nunjucks' %}
 
-{% import "_modules/link/link.nunjucks" as link %}
-
 
 {% block headline %}My headline will go here{% endblock %}
 {% block byline %}By Schmitty Werbenjagermanjensen{% endblock %}
@@ -10,6 +8,23 @@
 {% endblock %}
 
 {% block content %}
+<section>
+  <h3>A South L.A. neighborhood stands apart</h3>
+  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+  <div class="charts">
+    <div class="inline-chart" id="county-homicides">
+      <h4 class="chart-title">L.A. County Homicides</h4>
+    </div>
+
+    <div class="inline-chart" id="harvard-park-homicides">
+      <h4 class="chart-title">Harvard Park Homicides</h4>
+    </div>
+
+  </div>
+</section>
+
+
+
 <section>
   <h3>Lives lost</h3>
   <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
@@ -27,9 +42,16 @@
         <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
       </div>
     </div>
-{% endfor %}
+  {% endfor %}
   </div>
-</section
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    var annualTotals ={% include '_data/annual_totals.json' %};
+  </script>
 {% endblock %}
 
 
